@@ -21,12 +21,13 @@ router.get("/",function(req,res){
 })
 
 router.post("/",function (req,res){
-    // console.log(req.body);
+    console.log(req.body);
     controller.addUser(req.body)
         .then(data => {
             response.success(req,res,data,201)
         })
-        .catch(err=>{
+        .catch(err => {
+            console.log(err)
             response.error(req,res,"internal error",500)
         })
 })
