@@ -1,16 +1,10 @@
 {
-  "name": "example-app",
-  "description": "a really cool app",
+  "name": "chatapi",
   "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "engines": {
-    "node": "16.14.0",
-    "npm": "8.3.1"
-  },
-  "scripts": {
-    "start": "cross-env NODE_ENV=production nodemon server",
-    "dev": "cross-env NODE_ENV=development nodemon server",
-    "build": " src/index.js",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
+    "node": "16.14.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -21,5 +15,20 @@
     "mongoose": "^6.3.2",
     "nodemon": "^2.0.16",
     "socket.io": "^4.5.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erickayalarias/chatAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erickayalarias/chatAPI/issues"
+  },
+  "homepage": "https://github.com/erickayalarias/chatAPI#readme"
 }
