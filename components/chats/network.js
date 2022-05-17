@@ -5,7 +5,7 @@ const controller = require("./controller")//funciones
 const router= express.Router()
 
 router.get("/:id", (req, res) => {
-    consolr.log("hola")
+    console.log("hola")
 
     const id = req.params.id
 
