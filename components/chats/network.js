@@ -4,9 +4,12 @@ const controller = require("./controller")//funciones
 
 const router= express.Router()
 
-router.get("/:id",(req,res)=>{
+router.get("/:id", (req, res) => {
+    consolr.log("hola")
+
     const id = req.params.id
-    // console.log(id);
+
+    console.log(id);
     controller.GetChat(id)
         .then(message =>{
             response.success(req,res,message)

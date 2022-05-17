@@ -5,7 +5,8 @@ const controller = require("./controller")//funciones
 
 const router= express.Router()
 //rutas  mensajes
-router.get("/",(req,res)=>{
+router.get("/", (req, res) => {
+    
     const filterMessage = req.query.chat || null
     controller.getMessage(filterMessage)
         .then(message =>{
