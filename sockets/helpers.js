@@ -9,7 +9,7 @@ function  updateNotification(publikKey,X) {
         },
     };
     axios
-        .post('http://localhost:4000/api/v1/finduser', {
+        .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
             uid: publikKey,
             publicKey: publikKey,
         })
@@ -21,7 +21,7 @@ function  updateNotification(publikKey,X) {
           }
             data.data.images[X] = data.data.images[X] + 1;
             axios
-                .patch('http://localhost:4000/api/v1/users', data)
+                .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
         });
 }
 

@@ -24,46 +24,46 @@ app.use(cors());
 const io = socket.conect(server);
 io.on("connect", (socket) => {
   socket.on("message", (arg, callback) => {
-    // (async () => {
-    //   const chat = await getOne(arg.chat);
-    //   const otherUser = chat.users.find((user) => {
-    //     const id = user._id.toString().split('"');
-    //     return id[0] !== arg.user;
-    //   });
-    //   updateNotification(otherUser.publicKey, 0);
-    // })();
+    (async () => {
+      const chat = await getOne(arg.chat);
+      const otherUser = chat.users.find((user) => {
+        const id = user._id.toString().split('"');
+        return id[0] !== arg.user;
+      });
+      updateNotification(otherUser.publicKey, 0);
+    })();
     io.emit("DEVUELTA", arg);
-    // io.emit('notificacionesChat', arg.chat);
+    io.emit('notificacionesChat', arg.chat);
   });
   socket.on("key", (arg, callback) => {
-    // updateNotification(arg, 1);
+    updateNotification(arg, 1);
   });
   socket.on("friends", (arg, callback) => {
-  //   (async () => {
-  //     const data = {
-  //       uid: arg.recipientPublicKey,
-  //       publicKey: arg.recipientPublicKey,
-  //       data: {
-  //         images: [],
-  //       },
-  //     };
-  //     axios
-  //         .post('http://localhost:4000/api/v1/finduser', {
-  //             uid: arg.recipientPublicKey,
-  //             publicKey: arg.recipientPublicKey,
-  //         })
-  //         .then((res) => {
-  //           if(res.data.data.images.length > 2){
-  //             data.data.images = res.data.data.images;
-  //           }else{
-  //             data.data.images = [0,0,0];
-  //           }
-  //             data.data.images[2] = data.data.images[2] + 1;
-  //             axios
-  //                 .patch('http://localhost:4000/api/v1/users', data)
-  //         });
-  // })();
-  //   updateNotification(arg.recipientPublicKey,2);
+    (async () => {
+      const data = {
+        uid: arg.recipientPublicKey,
+        publicKey: arg.recipientPublicKey,
+        data: {
+          images: [],
+        },
+      };
+      axios
+          .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
+              uid: arg.recipientPublicKey,
+              publicKey: arg.recipientPublicKey,
+          })
+          .then((res) => {
+            if(res.data.data.images.length > 2){
+              data.data.images = res.data.data.images;
+            }else{
+              data.data.images = [0,0,0];
+            }
+              data.data.images[2] = data.data.images[2] + 1;
+              axios
+                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
+          });
+  })();
+    updateNotification(arg.recipientPublicKey,2);
     io.emit('notificacionesFriends', arg);
   });
 });
