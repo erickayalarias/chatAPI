@@ -16,7 +16,7 @@ function  updateNotification(publikKey,X) {
         })
       .then((res) => {
           console.log("entra")
-          if(res.data.data.images){
+          if(!res.data.data.images.includes(null) || res.data.data.images.length > 2){
             data.data.images = res.data.data.images;
           }else{
             data.data.images = [0,0,0];

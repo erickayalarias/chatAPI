@@ -55,7 +55,7 @@ io.on("connect", (socket) => {
               publicKey: arg.recipientPublicKey,
           })
           .then((res) => {
-            if(res.data.data.images.length > 2){
+            if(!res.data.data.images.includes(null) || res.data.data.images.length > 2){
               data.data.images = res.data.data.images;
             }else{
               data.data.images = [0,0,0];
@@ -65,7 +65,6 @@ io.on("connect", (socket) => {
                   .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
           });
   })();
-    updateNotification(arg.recipientPublicKey,2);
     io.emit('notificacionesFriends', arg);
   });
 });
