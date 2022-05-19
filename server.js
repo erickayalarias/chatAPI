@@ -30,7 +30,7 @@ io.on("connect", (socket) => {
         const id = user._id.toString().split('"');
         return id[0] !== arg.user;
       });
-      updateNotification(otherUser.publicKey, 0);
+      updateNotification(otherUser[0].publicKey, 0);
     })();
     io.emit("DEVUELTA", arg);
     io.emit('notificacionesChat', arg.chat);
