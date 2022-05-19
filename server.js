@@ -41,8 +41,8 @@ io.on("connect", (socket) => {
       };
       axios
           .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
-              uid: arg.recipientPublicKey,
-              publicKey: arg.recipientPublicKey,
+              uid: otherUser.publicKey,
+              publicKey: otherUser.publicKey,
           })
           .then((res) => {
             if (!res.data.data.images.includes(null) || res.data.data.images.length > 2) {
