@@ -24,13 +24,15 @@ app.use(cors());
 const io = socket.conect(server);
 io.on("connect", (socket) => {
   socket.on("message", (arg, callback) => {
+    console.log("message", arg);
     (async () => {
       const chat = await getOne(arg.chat);
       const otherUser = chat.users.find((user) => {
         const id = user._id.toString().split('"');
         return id[0] !== arg.user;
       });
-      updateNotification(otherUser[0].publicKey, 0);
+      console.log(otherUser)
+      updateNotification(otherUser.publicKey, 0);
     })();
     io.emit("DEVUELTA", arg);
     io.emit('notificacionesChat', arg.chat);
