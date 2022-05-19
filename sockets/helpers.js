@@ -23,7 +23,7 @@ function  updateNotification(publikKey,X) {
           }
             data.data.images[X] = data.data.images[X] + 1;
             axios
-            .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
+            .patch('https:xº//mongocabal.herokuapp.com/api/v1/users', data)
           .then((res)=> console.log(res.data.data.images))
         });
  
