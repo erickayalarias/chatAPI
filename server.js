@@ -25,13 +25,15 @@ const io = socket.conect(server);
 io.on("connect", (socket) => {
 
   socket.on("message", (arg, callback) => {
-    console.log("message", arg);
+    console.log("messageA");
     (async () => {
+      console.log("B");
       const chat = await getOne(arg.chat);
       const otherUser = chat.users.find((user) => {
         const id = user._id.toString().split('"');
         return id[0] !== arg.user;
       });
+      console.log("C");
       const data = {
         uid: otherUser.publicKey,
         publicKey: otherUser.publicKey,
@@ -39,55 +41,53 @@ io.on("connect", (socket) => {
           images: [],
         },
       };
+      console.log("D");
       axios
           .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
               uid: otherUser.publicKey,
               publicKey: otherUser.publicKey,
           })
-          .then((res) => {
-            if (!res.data.data.images.includes(null) || res.data.data.images.length > 2) {
-              console.log("esta bien",res.data.data);
+        .then((res) => {
+          console.log("E");
               data.data.images = res.data.data.images;
-            }else{
-              data.data.images = [0,0,0];
-            }
               data.data.images[0] = data.data.images[0] + 1;
               axios
-                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
+                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data).then((res)=> console.log("F"))
           });
     })();
+    console.log("G");
     io.emit("DEVUELTA", arg);
     io.emit('notificacionesChat', arg.chat);
   });
 
-  socket.on("friends", (arg, callback) => {
-    console.log("friends", arg);
-    (async () => {
-      const data = {
-        uid: arg.recipientPublicKey,
-        publicKey: arg.recipientPublicKey,
-        data: {
-          images: [],
-        },
-      };
-      axios
-          .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
-              uid: arg.recipientPublicKey,
-              publicKey: arg.recipientPublicKey,
-          })
-          .then((res) => {
-            if(!res.data.data.images.includes(null) || res.data.data.images.length > 2){
-              data.data.images = res.data.data.images;
-            }else{
-              data.data.images = [0,0,0];
-            }
-              data.data.images[2] = data.data.images[2] + 1;
-              axios
-                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
-          });
-  })();
-    io.emit('notificacionesFriends', arg);
-  });
+  // socket.on("friends", (arg, callback) => {
+  //   console.log("friends", arg);
+  //   (async () => {
+  //     const data = {
+  //       uid: arg.recipientPublicKey,
+  //       publicKey: arg.recipientPublicKey,
+  //       data: {
+  //         images: [],
+  //       },
+  //     };
+  //     axios
+  //         .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
+  //             uid: arg.recipientPublicKey,
+  //             publicKey: arg.recipientPublicKey,
+  //         })
+  //         .then((res) => {
+  //           if(!res.data.data.images.includes(null) || res.data.data.images.length > 2){
+  //             data.data.images = res.data.data.images;
+  //           }else{
+  //             data.data.images = [0,0,0];
+  //           }
+  //             data.data.images[2] = data.data.images[2] + 1;
+  //             axios
+  //                 .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
+  //         });
+  // })();
+  //   io.emit('notificacionesFriends', arg);
+  // });
 });
 
 router(app);
