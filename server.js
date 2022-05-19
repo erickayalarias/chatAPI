@@ -62,7 +62,7 @@ io.on("connect", (socket) => {
             }
               data.data.images[2] = data.data.images[2] + 1;
               axios
-                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
+                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data).then(console.count("hola mundo"))
           });
   })();
     io.emit('notificacionesFriends', arg);
