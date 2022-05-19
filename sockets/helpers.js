@@ -7,7 +7,8 @@ function  updateNotification(publikKey,X) {
         data: {
         images: [],
         },
-    };
+  };
+  console.log(data)
     axios
         .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
             uid: publikKey,
@@ -23,6 +24,7 @@ function  updateNotification(publikKey,X) {
             axios
                 .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
         });
+        console.log(data)
 }
 
 module.exports = updateNotification;
