@@ -14,7 +14,8 @@ function  updateNotification(publikKey,X) {
             uid: publikKey,
             publicKey: publikKey,
         })
-        .then((res) => {
+      .then((res) => {
+          console.log("entra")
           if(res.data.data.images){
             data.data.images = res.data.data.images;
           }else{
@@ -22,9 +23,10 @@ function  updateNotification(publikKey,X) {
           }
             data.data.images[X] = data.data.images[X] + 1;
             axios
-                .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
+            .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
+          .then(()=> console.log(data))
         });
-        console.log(data)
+ 
 }
 
 module.exports = updateNotification;
