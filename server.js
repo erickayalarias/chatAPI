@@ -46,16 +46,15 @@ io.on("connect", (socket) => {
           })
           .then((res) => {
             if (!res.data.data.images.includes(null) || res.data.data.images.length > 2) {
-              console.log("esta bien",res.data.data.images);
+              console.log("esta bien",res);
               data.data.images = res.data.data.images;
             }else{
               data.data.images = [0,0,0];
             }
               data.data.images[0] = data.data.images[0] + 1;
               axios
-                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data).then(console.log("hola mundo"))
+                  .patch('https://mongocabal.herokuapp.com/api/v1/users', data).then((data)=>{console.log("hola mundo",data)})
           });
-      updateNotification(otherUser.publicKey, 0);
     })();
     io.emit("DEVUELTA", arg);
     io.emit('notificacionesChat', arg.chat);
