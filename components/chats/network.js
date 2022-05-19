@@ -31,7 +31,6 @@ router.post("/",(req,res)=>{
             response.success(req,res,fullMessage,201)
         })
         .catch(e=>{
-            // console.log("error",e);
             response.error(req,res, "informacion invalida",500)})
 })
 
