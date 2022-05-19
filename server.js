@@ -35,9 +35,9 @@ io.on("connect", (socket) => {
     io.emit("DEVUELTA", arg);
     io.emit('notificacionesChat', arg.chat);
   });
-  socket.on("key", (arg, callback) => {
-    updateNotification(arg, 1);
-  });
+  // socket.on("key", (arg, callback) => {
+  //   updateNotification(arg, 1);
+  // });
   socket.on("friends", (arg, callback) => {
     (async () => {
       const data = {
