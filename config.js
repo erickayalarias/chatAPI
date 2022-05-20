@@ -2,6 +2,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
-    socket_origin: ["frolicking-mandazi-cc8caa.netlify.app"],
+    socket_origin: ["https://dev.d3v4zrgf3fqesn.amplifyapp.com" ],
     db: process.env.DB || 3001,
 }
