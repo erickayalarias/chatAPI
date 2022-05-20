@@ -59,35 +59,6 @@ io.on("connect", (socket) => {
     io.emit("DEVUELTA", arg);
     io.emit('notificacionesChat', arg.chat);
   });
-
-  // socket.on("friends", (arg, callback) => {
-  //   console.log("friends", arg);
-  //   (async () => {
-  //     const data = {
-  //       uid: arg.recipientPublicKey,
-  //       publicKey: arg.recipientPublicKey,
-  //       data: {
-  //         images: [],
-  //       },
-  //     };
-  //     axios
-  //         .post('https://mongocabal.herokuapp.com/api/v1/finduser', {
-  //             uid: arg.recipientPublicKey,
-  //             publicKey: arg.recipientPublicKey,
-  //         })
-  //         .then((res) => {
-  //           if(!res.data.data.images.includes(null) || res.data.data.images.length > 2){
-  //             data.data.images = res.data.data.images;
-  //           }else{
-  //             data.data.images = [0,0,0];
-  //           }
-  //             data.data.images[2] = data.data.images[2] + 1;
-  //             axios
-  //                 .patch('https://mongocabal.herokuapp.com/api/v1/users', data)
-  //         });
-  // })();
-  //   io.emit('notificacionesFriends', arg);
-  // });
 });
 
 router(app);
