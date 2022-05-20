@@ -2,6 +2,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
-    socket_origin: process.env.SOCKET_ORIGIN || 'http://localhost:3000',
+    socket_origin: ["https://genuine-cupcake-017956.netlify.app"],
     db: process.env.DB || 3001,
 }
